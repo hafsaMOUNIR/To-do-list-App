@@ -18,12 +18,18 @@ class AddItem extends Component {
     
     handelSubmit = (e) => {
         e.preventDefault();
-        this.props.AddItem(this.state)
-        this.setState({
-            name : '',
-            time : '' ,
-            unite : ''
+        if (e.target.name.value === ''){
+            // return false ;
+            alert("saisir un tache !");
+        }else {
+            this.props.AddItem(this.state)
+            this.setState({
+               name : '',
+               time : '' ,
+               unite : ''
         })
+        }
+        
     }
     render () {
         return (
@@ -31,7 +37,7 @@ class AddItem extends Component {
                 <form onSubmit={this.handelSubmit}>
                     <input type = "text" placeholder="nom de la tache" id="name" onChange = {this.handelChange} value = {this.state.name} />
                     <input type = "number" placeholder="durée " id="time" onChange = {this.handelChange} value = {this.state.time} />
-                    <select  id ="unite" onChange = {this.handelChange}>
+                    <select  id ="unite" onChange = {this.handelChange} >
                         <option>Semaine</option>
                         <option>Jour</option>
                         <option>Heure</option>
